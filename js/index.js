@@ -2,41 +2,43 @@
 
 function updateSubtotal(product) {
   
-  console.log('Calculating subtotal, yey!');
+  //console.log('Calculating subtotal, yey!');
 
   //... your code goes here
   //extracting specific values from document
-  const $price = document.querySelector('.price span').innerHTML;
-  const $quantity = document.querySelector('.quantity input').value;
+  const $price = product.querySelector('.price span').innerText;
+  const $quantity = product.querySelector('.quantity input').valueAsNumber;
   //make the calculation for this function
-  const subtotal = $price * $quantity;
+  const subtotal = Number($price) * $quantity;
   //create variable where it would hold subtotal on the document
-  let $subtotal = document.querySelector('.subtotal span');
+  let $subtotal = product.querySelector('.subtotal span');
   //return subtotal value to document
-  
-  return $subtotal.innerHTML = subtotal;
+  $subtotal.innerText = subtotal;
+   
+  return subtotal;
 }
 
 function calculateAll() {
   // code in the following two lines is added just for testing purposes.
   // it runs when only iteration 1 is completed. at later point, it can be removed.
-  //const singleProduct = document.querySelectorAll('.product span');
-  //updateSubtotal(singleProduct);
+  //const singleProduct = document.querySelector('.product');
+  //const newConst = updateSubtotal(singleProduct);
   // end of test
-
-  // ITERATION 2
+  
+    // ITERATION 2
   //... your code goes here
-  const $product = document.querySelectorAll('.product');
-  let newsubtotal;
-  for (let i = 0; i < $product.length; i++) {
-    newsubtotal = updateSubtotal($product[i]);
-    
+  const $allProducts = document.querySelectorAll('.product');
+  //console.lo;
+  let total = 0;
+
+  for (let i = 0; i < $allProducts.length; i++) {
+    total += updateSubtotal($allProducts[i]);
   }
   
+  let $total = document.querySelector('#total-value span');
 
-  return newsubtotal;
-  // ITERATION 3
-  //... your code goes here
+  $total.innerText = total;
+  //return newsubtotal;
 }
 
 // ITERATION 4
